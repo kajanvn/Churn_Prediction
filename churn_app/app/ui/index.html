@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Churn Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+            padding: 30px;
+        }
+        h2 {
+            color: #2a4d69;
+        }
+        form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        select, input {
+            width: 100%;
+            padding: 6px;
+            margin-top: 5px;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px;
+            background: #2a4d69;
+            color: white;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Customer Churn Prediction</h2>
+
+    <form action="/predict" method="post">
+        <!-- Dropdowns -->
+        <label for="gender">Gender</label>
+        <select name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label for="SeniorCitizen">Senior Citizen</label>
+        <select name="SeniorCitizen" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <label for="Partner">Partner</label>
+        <select name="Partner" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="Dependents">Dependents</label>
+        <select name="Dependents" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="PhoneService">Phone Service</label>
+        <select name="PhoneService" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="MultipleLines">Multiple Lines</label>
+        <select name="MultipleLines" required>
+            <option value="No phone service">No phone service</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <label for="InternetService">Internet Service</label>
+        <select name="InternetService" required>
+            <option value="DSL">DSL</option>
+            <option value="Fiber optic">Fiber optic</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="OnlineSecurity">Online Security</label>
+        <select name="OnlineSecurity" required>
+            <option value="No internet service">No internet service</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <label for="OnlineBackup">Online Backup</label>
+        <select name="OnlineBackup" required>
+            <option value="No internet service">No internet service</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <label for="DeviceProtection">Device Protection</label>
+        <select name="DeviceProtection" required>
+            <option value="No internet service">No internet service</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <label for="TechSupport">Tech Support</label>
+        <select name="TechSupport" required>
+            <option value="No internet service">No internet service</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <label for="StreamingTV">Streaming TV</label>
+        <select name="StreamingTV" required>
+            <option value="No internet service">No internet service</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <label for="StreamingMovies">Streaming Movies</label>
+        <select name="StreamingMovies" required>
+            <option value="No internet service">No internet service</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <label for="Contract">Contract</label>
+        <select name="Contract" required>
+            <option value="Month-to-month">Month-to-month</option>
+            <option value="One year">One year</option>
+            <option value="Two year">Two year</option>
+        </select>
+
+        <label for="PaperlessBilling">Paperless Billing</label>
+        <select name="PaperlessBilling" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="PaymentMethod">Payment Method</label>
+        <select name="PaymentMethod" required>
+            <option value="Electronic check">Electronic check</option>
+            <option value="Mailed check">Mailed check</option>
+            <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+            <option value="Credit card (automatic)">Credit card (automatic)</option>
+        </select>
+
+        <!-- Numeric inputs -->
+        <label for="tenure">Tenure (0–72)</label>
+        <input type="number" name="tenure" min="0" max="72" placeholder="e.g. 12" required>
+
+        <label for="MonthlyCharges">Monthly Charges</label>
+        <input type="number" name="MonthlyCharges" step="0.01" min="0" max="200" placeholder="e.g. 85.5" required>
+
+        <label for="TotalCharges">Total Charges</label>
+        <input type="number" name="TotalCharges" step="0.01" min="0" max="10000" placeholder="e.g. 2654.80" required>
+
+        <button class="submit-btn" type="submit">Predict Churn</button>
+    </form>
+
+    {% if result %}
+        <div class="result">
+            Prediction: <span>{{ result }}</span>
+        </div>
+    {% endif %}
+</body>
+</html>
