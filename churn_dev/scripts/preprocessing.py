@@ -13,7 +13,7 @@ def clean_total_charges(df):
     return df
 
 
-
+'''
 def encode_features(df):
     df = df.copy()
     exclude_cols = ['customerID', 'Churn']
@@ -23,6 +23,7 @@ def encode_features(df):
         le = LabelEncoder()
         df[col] = le.fit_transform(df[col])
     return df
+'''
 def encode_features(df):
     df = df.copy()
     exclude_cols = ['customerID', 'Churn']
